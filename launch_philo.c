@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 10:27:53 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/12 09:10:57 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/13 08:34:37 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	init_mutex(t_env *e)
 
 void	launch_philo(t_env *e)
 {
-	create_thread(e);
 	init_mutex(e);
+	create_thread(e);
 }

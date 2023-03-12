@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 08:45:14 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/12 09:10:29 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/13 08:39:08 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ int	free_e(t_env *e)
 		free(e->fork);
 		e->fork = NULL;
 	}
-	//if (e->eat_or_die)
-	//{
-	//	free(e->eat_or_die);
-	//	e->eat_or_die = NULL;
-	//}
 	if (e)
 		free(e);
 	return (1);
