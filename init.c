@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 08:29:17 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/13 08:41:03 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/14 21:26:43 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_e(t_env *e)
 	e->p = NULL;
 	e->fork = NULL;
 	e->time_start = 0;
+	e->die = 0;
 }
 
 int	insert_e(t_env *e, char **argv)

@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 18:59:10 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/13 08:40:23 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/14 21:28:33 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	routine(t_philo *p)
 {
 	if (p->i % 2 == 0)
 		take_time(p->env->time_eat, get_now());
-	while (1)
+	while (!p->env->die)
 	{
 		pthread_mutex_lock(p->lfork);
 		print(p->i, MESSAGE_FORK);

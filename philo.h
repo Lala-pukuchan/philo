@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 08:15:26 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/12 09:02:35 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/14 21:29:39 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_philo
 	pthread_mutex_t	*lfork;
 	pthread_mutex_t	*rfork;
 	unsigned long	time_last_eat;
-	pthread_mutex_t	*eat_or_die;
 }	t_philo;
 
 typedef struct s_env
@@ -50,8 +49,7 @@ typedef struct s_env
 	t_philo			*p;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	eat;
-	int				*die;
-	pthread_mutex_t	*eat_or_die;
+	int				die;
 }	t_env;
 
 int				ft_isdigit(int c);
@@ -64,6 +62,6 @@ void			end_philo(t_env *e);
 void			routine(t_philo *p);
 int				ft_atoi(const char *str);
 unsigned long	get_now(void);
-int				check_philo(t_env *e);
+void			check_philo(t_env *e);
 
 #endif
