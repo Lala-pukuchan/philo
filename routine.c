@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 18:59:10 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/15 21:08:54 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/15 21:19:44 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ void	print(t_philo *p, int i, char *m)
 {
 	pthread_mutex_lock(&p->env->die_check);
 	if (!p->dead)
+	{
+		pthread_mutex_lock(&p->env->m_print);
 		printf("%lu %d %s\n", get_now(), i, m);
+		pthread_mutex_unlock(&p->env->m_print);
+	}
 	pthread_mutex_unlock(&p->env->die_check);
 }
 

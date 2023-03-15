@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 18:56:38 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/15 18:23:22 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/15 21:18:53 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	destroy_mutex(t_env *e)
 		pthread_mutex_destroy(&e->fork[i++]);
 	pthread_mutex_init(&e->eat, NULL);
 	pthread_mutex_init(&e->die_check, NULL);
+	pthread_mutex_init(&e->m_print, NULL);
 }
 
 void	end_philo(t_env *e)

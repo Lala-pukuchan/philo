@@ -6,15 +6,17 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:25:40 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/15 21:12:22 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/15 21:21:06 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_die(int i)
+void	print_die(t_env *e, int i)
 {
+	pthread_mutex_lock(&e->m_print);
 	printf("%lu %d %s\n", get_now(), i, MESSAGE_DIE);
+	pthread_mutex_unlock(&e->m_print);
 }
 
 void	kill_all(t_env *e)
@@ -43,7 +45,7 @@ void	check_philo(t_env *e)
 			pthread_mutex_lock(&e->eat);
 			if (get_now() - e->p[i].time_last_eat > e->time_die)
 			{
-				print_die(i);
+				print_die(e, i);
 				e->die = 1;
 				kill_all(e);
 				pthread_mutex_unlock(&e->eat);

@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 08:15:26 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/15 21:08:08 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/15 21:18:15 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_env
 	pthread_mutex_t	eat;
 	int				die;
 	pthread_mutex_t	die_check;
+	pthread_mutex_t	m_print;
 }	t_env;
 
 int				ft_isdigit(int c);
