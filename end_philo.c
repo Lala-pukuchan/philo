@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 18:56:38 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/15 21:18:53 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/16 08:10:18 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	destroy_mutex(t_env *e)
 
 void	end_philo(t_env *e)
 {
+	if (e->num == 1)
+		pthread_mutex_unlock(e->p[0].lfork);
 	join_thread(e);
 	destroy_mutex(e);
 }
