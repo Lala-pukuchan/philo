@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:25:40 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/15 18:22:52 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/15 21:12:22 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ void	kill_all(t_env *e)
 void	check_philo(t_env *e)
 {
 	int	i;
+	int	sum_eat;
 
 	while (1)
 	{
 		i = 0;
+		sum_eat = 0;
 		while (i < e->num)
 		{
 			pthread_mutex_lock(&e->eat);
@@ -47,10 +49,18 @@ void	check_philo(t_env *e)
 				pthread_mutex_unlock(&e->eat);
 				break ;
 			}
+			if (e->count_must_eat != -1 && e->p[i].count_eat >= e->count_must_eat)
+				sum_eat++;
 			pthread_mutex_unlock(&e->eat);
 			i++;
 		}
 		if (e->die)
 			break ;
+		if (sum_eat >= e->num)
+		{
+			e->die = 1;
+			kill_all(e);
+			break ;
+		}
 	}
 }

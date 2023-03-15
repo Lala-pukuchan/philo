@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 08:15:26 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/15 09:10:42 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/15 21:08:08 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 	pthread_mutex_t	*lfork;
 	pthread_mutex_t	*rfork;
 	unsigned long	time_last_eat;
+	int				count_eat;
 }	t_philo;
 
 typedef struct s_env

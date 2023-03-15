@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 08:29:17 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/14 21:26:43 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/15 21:08:25 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	init_p(t_env *e)
 		e->p[i].lfork = &e->fork[i];
 		e->p[i].rfork = &e->fork[(i + 1) % e->num];
 		e->p[i].time_last_eat = get_now();
+		e->p[i].count_eat = 0;
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 18:59:10 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/15 18:22:32 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/15 21:08:54 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	routine(t_philo *p)
 		print(p, p->i, MESSAGE_EAT);
 		pthread_mutex_lock(&p->env->eat);
 		p->time_last_eat = get_now();
+		p->count_eat++;
 		pthread_mutex_unlock(&p->env->eat);
 		take_time(p, p->env->time_eat, get_now());
 		pthread_mutex_unlock(p->lfork);
