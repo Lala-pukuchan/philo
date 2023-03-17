@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:25:40 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/17 21:16:50 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/17 22:17:37 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	check_philo(t_env *e)
 	{
 		i = 0;
 		sum_eat = 0;
-		while (i < e->num)
+		while (i < e->num && !e->die)
 		{
 			pthread_mutex_lock(&e->eat);
 			check(e, i, &sum_eat);
