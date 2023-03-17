@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:25:40 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/17 19:51:32 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/17 20:04:58 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	print_die(t_env *e, int i)
 
 void	kill_all(t_env *e)
 {
-	int j = 0;
+	int	j;
+
+	j = 0;
 	while (j < e->num)
 	{
 		pthread_mutex_lock(&e->die_check);
@@ -51,7 +53,8 @@ void	check_philo(t_env *e)
 				pthread_mutex_unlock(&e->eat);
 				break ;
 			}
-			if (e->count_must_eat != -1 && e->p[i].count_eat >= e->count_must_eat)
+			if (e->count_must_eat != -1 \
+			&& e->p[i].count_eat >= e->count_must_eat)
 				sum_eat++;
 			pthread_mutex_unlock(&e->eat);
 			i++;
