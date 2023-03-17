@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 18:59:10 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/17 20:07:15 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/17 20:18:37 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,22 @@ void	take_time(t_philo *p, double d, double start)
 
 void	eat(t_philo *p)
 {
-if (p->i % 2 == 0)
-			usleep(500);
-		pthread_mutex_lock(p->lfork);
-		print(p, p->i, MESSAGE_FORK);
-		if (p->i % 2 == 0)
-			usleep(500);
-		pthread_mutex_lock(p->rfork);
-		print(p, p->i, MESSAGE_FORK);
-		print(p, p->i, MESSAGE_EAT);
-		pthread_mutex_lock(&p->env->eat);
-		p->time_last_eat = get_now();
-		p->count_eat++;
-		pthread_mutex_unlock(&p->env->eat);
-		take_time(p, p->env->time_eat, get_now());
-		pthread_mutex_unlock(p->lfork);
-		pthread_mutex_unlock(p->rfork);
+	if (p->i % 2 == 0)
+		usleep(500);
+	pthread_mutex_lock(p->lfork);
+	print(p, p->i, MESSAGE_FORK);
+	if (p->i % 2 == 0)
+		usleep(500);
+	pthread_mutex_lock(p->rfork);
+	print(p, p->i, MESSAGE_FORK);
+	print(p, p->i, MESSAGE_EAT);
+	pthread_mutex_lock(&p->env->eat);
+	p->time_last_eat = get_now();
+	p->count_eat++;
+	pthread_mutex_unlock(&p->env->eat);
+	take_time(p, p->env->time_eat, get_now());
+	pthread_mutex_unlock(p->lfork);
+	pthread_mutex_unlock(p->rfork);
 }
 
 void	routine(t_philo *p)
