@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 08:29:17 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/16 08:50:54 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/17 20:00:08 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	insert_e(t_env *e, char **argv)
 	e->time_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		e->count_must_eat = ft_atoi(argv[5]);
+	if (e->count_must_eat == 0)
+		return (free_e(e));
 	e->p = (t_philo *)malloc(e->num * sizeof(t_philo));
 	if (!e->p)
 		return (free_e(e));
