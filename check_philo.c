@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:25:40 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/17 20:04:58 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/17 21:16:50 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,33 @@ void	kill_all(t_env *e)
 {
 	int	j;
 
-	j = 0;
-	while (j < e->num)
+	if (!e->die)
 	{
-		pthread_mutex_lock(&e->die_check);
-		e->p[j].dead = 1;
-		pthread_mutex_unlock(&e->die_check);
-		j++;
+		e->die = 1;
+		j = 0;
+		while (j < e->num)
+		{
+			pthread_mutex_lock(&e->die_check);
+			e->p[j].dead = 1;
+			pthread_mutex_unlock(&e->die_check);
+			j++;
+		}
 	}
+}
+
+void	check(t_env *e, int i, int *sum_eat)
+{
+	if (get_now() - e->p[i].time_last_eat > e->time_die)
+	{
+		print_die(e, i);
+		kill_all(e);
+		return ;
+	}
+	if (e->count_must_eat != -1 \
+		&& e->p[i].count_eat >= e->count_must_eat)
+		(*sum_eat)++;
+	if (*sum_eat >= e->num)
+		kill_all(e);
 }
 
 void	check_philo(t_env *e)
@@ -45,27 +64,11 @@ void	check_philo(t_env *e)
 		while (i < e->num)
 		{
 			pthread_mutex_lock(&e->eat);
-			if (get_now() - e->p[i].time_last_eat > e->time_die)
-			{
-				print_die(e, i);
-				e->die = 1;
-				kill_all(e);
-				pthread_mutex_unlock(&e->eat);
-				break ;
-			}
-			if (e->count_must_eat != -1 \
-			&& e->p[i].count_eat >= e->count_must_eat)
-				sum_eat++;
+			check(e, i, &sum_eat);
 			pthread_mutex_unlock(&e->eat);
 			i++;
 		}
 		if (e->die)
 			break ;
-		if (sum_eat >= e->num)
-		{
-			e->die = 1;
-			kill_all(e);
-			break ;
-		}
 	}
 }
