@@ -6,7 +6,7 @@
 /*   By: kobayashi <kobayashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 18:59:10 by kobayashi         #+#    #+#             */
-/*   Updated: 2023/03/15 21:19:44 by kobayashi        ###   ########.fr       */
+/*   Updated: 2023/03/17 18:09:35 by kobayashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,16 @@ void	take_time(t_philo *p, double d, double start)
 
 void	routine(t_philo *p)
 {
-	if (p->i % 2 == 0 && !p->dead)
+	if (p->i % 2 == 0)
 		take_time(p, p->env->time_eat, get_now());
 	while (1)
 	{
+		if (p->i % 2 == 0)
+			usleep(500);
 		pthread_mutex_lock(p->lfork);
 		print(p, p->i, MESSAGE_FORK);
+		if (p->i % 2 == 0)
+			usleep(500);
 		pthread_mutex_lock(p->rfork);
 		print(p, p->i, MESSAGE_FORK);
 		print(p, p->i, MESSAGE_EAT);
